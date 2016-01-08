@@ -1,3 +1,2 @@
-var myName = "Rick (this is from my external javascript file)";
+var myName = "Rick";
 
-//document.write(myName);
