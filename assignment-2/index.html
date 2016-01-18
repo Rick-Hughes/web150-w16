@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>assignment-2</title>
+  </head>
+
+<body>
+
+<h3>Do You Have To Pay US Income Tax This Year?</h3>
+
+<script>
+
+confirm("Let's find out - push OK to continue.")
+
+if ( prompt("Are you a citizen of the United States?") == "yes")
+
+{  
+confirm("Then you might have to pay tax this year.  Let's keep going - push OK to continue.");
+
+        if ( prompt("Did you make any money in 2015?") == "yes")
+                
+        {
+        confirm("Good for you.  One more question to answer - push OK to continue.");
+        
+        } else {
+                         
+        confirm("Too bad.  But you still need to file a tax form.  One more question to answer - push OK to continue");
+        }
+        
+        var amount = prompt("How much $ do you wish to contribute to the Presidential Election Fund? ($5 is standard)");
+        
+                if (amount == 5)
+                        
+                {
+                    document.write("$5 is the standard amount. But kinda boring.");
+                            
+                } 
+                
+                else if ( amount < 5)
+                                 
+                {
+                    document.write("You're cheap!");
+                }
+                
+                else {
+                    document.write("Hey, you must have a lot of money.  Would you be interesed in purchasing an oceanside lot in Phoenix?");
+                }
+
+} else {
+    
+document.write("Well, if you are not a citizen then you don't have to pay US taxes.  Lucky you");
+}
+</script>
+
+</body>
+</html>
+
+
+
