@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+    
+<head>
+    
+<script src = "Seattle_Crime_Stats_2013.js">  </script>
+
+</head>
+    
+<body>
+            
+<script>
+
+    var INDEX_MONTH = 0;
+    var INDEX_PRECINCT = 1;
+    var INDEX_CRIME = 2;
+    var INDEX_COUNT = 3;
+    
+    var month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
+    
+    var crime_types = [];
+    var precincts = [];
+    var months = [];
+    
+    var homicide_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    
+    
+    var counter = 0;
+    for (var i = 0; i < crime_stats.length;  i = i + 1) {
+    var current = crime_stats[i];
+    if (current) {
+    counter = counter + 1;
+  }
+}
+    
+    
+    
+    
+    
+    
+    
+    
+/*    
+    for (r in crime_stats) {
+        if (crime_stats[r][INDEX_CRIME] == "Homicide") {
+        var monthNum = crime_stats[r][INDEX_MONTH];
+        homicide_by_month[monthNum-1] += crime_stats[r][INDEX_COUNT];
+        }
+}
+*/
+
+
+</script>   
+        
+</body>
+
+</html>

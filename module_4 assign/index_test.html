@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+    
+<head>
+    
+<script src = "Seattle_Crime_Stats_2013.js">  </script>
+
+</head>
+    
+<body>
+            
+<script>
+
+    var INDEX_MONTH = 0;
+    var INDEX_PRECINCT = 1;
+    var INDEX_CRIME = 2;
+    var INDEX_COUNT = 3;
+    
+    var month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
+    
+    var crime_types = [];
+    var precincts = [];
+    var months = [];
+    
+    var homicide_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    
+    for (r in crime_stats) {
+    
+// check that our data are clean and reliable
+
+
+        if (precincts.indexOf(crime_stats[r][INDEX_PRECINCT]) == -1) {
+            precincts.push(crime_stats[r][INDEX_PRECINCT]);
+        }
+        
+        if (crime_types.indexOf(crime_stats[r][INDEX_CRIME]) == -1) {
+            crime_types.push(crime_stats[r][INDEX_CRIME]);
+        }
+        
+        if (months.indexOf(crime_stats[r][INDEX_MONTH]) == -1) {
+            months.push(crime_stats[r][INDEX_MONTH]);
+        }
+}
+
+document.write("<ul><li><b>Total Reports:</b> " + crime_stats.length + "</br>")
+document.write("<li><b>Precincts:  </b> " + precincts + "</br>");
+document.write("<li><b>Crime Types: </b> " + crime_types + "</br>");
+document.write("<li><b>Months: </b>   " + months + "</br>");
+document.write("--------------" +"</br>" +  "</br>");  //a couple of line breaks to separate thing
+
+    for (r in crime_stats) {
+        if (crime_stats[r][INDEX_CRIME] == "Homicide") {
+        var monthNum = crime_stats[r][INDEX_MONTH];
+        homicide_by_month[monthNum-1] += crime_stats[r][INDEX_COUNT];
+        }
+}
+
+document.write("<li><b>Homicides: </b>  " + months + homicide_by_month + "</br>");
+document.write("--------------" +"</br>" +  "</br>");  //a couple of line breaks to separate things
+
+    for (r in crime_stats) {  //try to get the count of burglaries, by month
+        if (crime_stats[r][INDEX_CRIME] == "Burglary") {
+        var totalCount = crime_stats[r][INDEX_MONTH];
+        homicide_by_month[monthNum-1] += crime_stats[r][INDEX_COUNT];
+        }
+}
+
+document.write("<li><b>total count: </b>  " + totalCount + "</br>");
+document.write("--------------" +"</br>" +  "</br>");  //a couple of line breaks to separate things
+
+
+    for (r in crime_stats) {  //get the total number of burglaries, by month
+        if (crime_stats[r][INDEX_CRIME] == "Burglary") {
+        var monthNum = crime_stats[r][INDEX_MONTH];
+        homicide_by_month[monthNum-1] += crime_stats[r][INDEX_COUNT];
+        }
+}
+
+document.write("<li><b>Burglary: </b>  " + homicide_by_month + "</br>");
+document.write("--------------" +"</br>" +  "</br>");  //a couple of line breaks to separate things
+
+document.write("What's in this row? - " + crime_stats[2996] + "</br>");
+
+var count = 0;  //to try to get something to work
+
+    for(var i = 0; i < crime_stats.length; i = i+1) {
+        if(crime_stats[i][INDEX_CRIME] == Robbery) count + 1;
+}
+
+document.write(count);
+
+var names2 = crime_stats.slice(0); // new array with items from index 1
+
+document.write("new array? did this work? - " + names2 + "</br>");
+
+/*
+    for (r in crime_stats) {  //get something out of precincts
+        if (crime_stats[r][INDEX_PRECINCT] == "SE") {
+        var monthNum = crime_stats[r][INDEX_MONTH];
+        homicide_by_month[monthNum-1] += crime_stats[r][INDEX_COUNT];
+        }
+}
+
+document.write("<li><b>Precincts: </b>  " + homicide_by_month + "</br>");
+document.write("--------------" +"</br>" +  "</br>");  //a couple of line breaks to separate things
+
+*/
+
+    var count = 0;  //to try to create a For loop that does something
+    for(var i = 0; i < crime_stats.length; i++){
+        if(crime_stats[i][INDEX_CRIME] == Robbery) count++;
+}
+document.write("<li><b>Crimes: </b>  " + count + "</br>");
+document.write("--------------" +"</br>" +  "</br>");  //a couple of line breaks to separate things
+
+
+
+var counter = 0;
+for (var i = 0; i < crime_stats.length;  i = i + 1) {
+  var current = crime_stats[i];
+  if (current) {
+    counter = counter + 1;
+  }
+}
+document.write("Total: " + counter + "</br>")
+document.write("--------------" +"</br>" +  "</br>");  //a couple of line breaks to separate things
+
+var counter = 0;
+for (var i = 0; i < crime_stats.length;  i = i + 1)
+    if (crime_stats[r][INDEX_CRIME] == "Burglary") {
+  var current = crime_stats[i];
+  if (current) {
+    counter = counter + 1;
+  }
+}
+document.write("Total: " + counter + "</br>")
+document.write("--------------" +"</br>" +  "</br>");  //a couple of line breaks to separate things
+
+    var  count = {}; 
+    
+    crime_stats.forEach(function(i) { count[i] = (count[i]||0)+1;  });
+
+document.write(count + "</br>");
+document.write("--------------" +"</br>" +  "</br>");  //a couple of line breaks to separate things
+
+
+    var burglaries = {};
+    
+    crime_stats.forEach(function(x) { burglaries[x] = (burglaries[x] || 0)+1; });
+
+document.write("number of burglaries = " + burglaries + "</br>");
+document.write("--------------" +"</br>" +  "</br>");  //a couple of line breaks to separate things
+
+
+</script>   
+        
+</body>
+
+</html>
