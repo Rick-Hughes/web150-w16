@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src = "Seattle_Crime_Stats_2013.js">  </script>
+</head>
+<body>
+<script>
+
+    var INDEX_MONTH = 0;
+    var INDEX_PRECINCT = 1;
+    var INDEX_CRIME = 2;
+    var INDEX_COUNT = 3;
+    
+    var month_names = ["Jan", "Feb", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    precinct_names = ["East", "West", "Southeast", "North", "Southwest"];
+    
+    var crime_types = [];
+    var precincts = [];
+    var months = [];
+    var totalBurg = 0;
+    
+    var homicide_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    var burgByPrecinct = [0, 0, 0, 0, 0];
+    var assaults_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    for (r in crime_stats) {
+    
+// check that our data are clean and reliable
+
+        if (precincts.indexOf(crime_stats[r][INDEX_PRECINCT]) == -1) {
+            precincts.push(crime_stats[r][INDEX_PRECINCT]);
+        }
+        
+        if (crime_types.indexOf(crime_stats[r][INDEX_CRIME]) == -1) {
+            crime_types.push(crime_stats[r][INDEX_CRIME]);
+        }
+        
+// Determine the total number of burglaries.
+        if (crime_stats[r][2] == "Burglary") {
+            totalBurg += crime_stats[r][3];
+        }
+        
+
+// Determine how many burglaries occurred in each of the precincts.
+       
+    
+            switch (crime_stats[r][INDEX_PRECINCT]) {
+                case 'E':
+                    burgByPrecinct[0] += crime_stats[r][INDEX_COUNT];
+                break;
+                case 'W':
+                    burgByPrecinct[1] += crime_stats[r][INDEX_COUNT];
+                break;
+                case 'SE':
+                    burgByPrecinct[2] += crime_stats[r][INDEX_COUNT];
+                break;
+                case 'N':
+                    burgByPrecinct[3] += crime_stats[r][INDEX_COUNT];
+                break;
+                case 'SW':
+                    burgByPrecinct[4] += crime_stats[r][INDEX_COUNT];
+                break;
+            }
+                
+        if (crime_stats[r][INDEX_CRIME] == "Assault") {
+            var monthNum = crime_stats[r][INDEX_MONTH];
+            assaults_by_month[monthNum - 1] += crime_stats[r][INDEX_COUNT];
+        } 
+}  // end of For loop
+
+//find the precinct with the most burglaries
+var sumBurg = 0;
+var maxPrecinct = 0;
+var minPrecinct = 1000000;
+
+    for (var i = 0; i < burgByPrecinct.length; i++) {
+ 
+        sumBurg += burgByPrecinct[i];
+        
+        if (burgByPrecinct[i] > maxPrecinct) {
+         maxPrecinct = burgByPrecinct[i];
+        }
+        
+        if (burgByPrecinct[i] < minPrecinct) {
+          minPrecinct = burgByPrecinct[i];
+        }
+        
+    }  
+
+
+// find the month with the fewest assaults
+var sum = 0;
+var maxMonth = 0;
+var minMonth = 1000;
+
+    for (var i = 0; i < assaults_by_month.length; i++) {
+ 
+    //  for (i in assaults_by_month) {
+    
+        sum += assaults_by_month[i];
+        
+        if (assaults_by_month[i] > maxMonth) {
+         maxMonth = assaults_by_month[i];
+        }
+        
+        if (assaults_by_month[i] < minMonth) {
+          minMonth = assaults_by_month[i];
+        }
+    }
+  
+
+
+// check that our data are clean and reliable
+document.write("<ul><li><b>Total Reports:</b> " + crime_stats.length + "</br></br>");
+document.write("<li><b>Precincts:  </b> " + precincts + "</br></br>");
+document.write("<li><b>Crime Types: </b> " + crime_types + "</br>");
+document.write("</ul> ------------------------" +"</br>" +  "</br>");  
+
+//TOTAL BURGLARIES
+document.write("<b>Total Burglaries</b> = " + totalBurg + "</br></br>");
+
+//AVERAGE BURGLARIES PER PRECINCT
+document.write("<b>Avg Burglaries/Precinct </b> = " + totalBurg/precincts.length + "</br></br>");
+
+//PRECINCT WITH THE MOST BURGLARIES
+document.write("<b>Precinct With Most Burglaries </b> = " + precinct_names[burgByPrecinct.indexOf(maxPrecinct)] + "</br>");
+document.write("<p><font size=2>Burglaries in each precinct = " + burgByPrecinct + "</font></p></br>");
+
+//MONTH WITH FEWEST ASSAULTS
+document.write("<b>Month With Fewest Assaults = </b>" + month_names[assaults_by_month.indexOf(minMonth)] + "</br>");
+document.write("<p><font size=2>Assaults by month = " + assaults_by_month + "</font></p></br>");
+
+document.write("</ul> ------------------------" + "</br></br>");  
+
+
+
+
+</script>   
+</body>
+</html>

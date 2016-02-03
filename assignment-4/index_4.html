@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src = "Seattle_Crime_Stats_2013_b.js">  </script>
+</head>
+<body>
+<script>
+
+//determine the total number of records in the database (just because)
+
+document.write("number of reports in crime_stats = " + crime_stats.length + "</br></br>");  //counts total reports, confirms I'm speaking to crime_stats
+
+//Determine the total number of burglaries
+
+var totalBurg = 0;
+
+  for (var row in crime_stats) {
+      
+       if (crime_stats[row].crime == "Burglary") {
+            totalBurg += crime_stats[row].count;
+        }
+        
+document.write("<b><u>Total Burglaries</b></u> = " + totalBurg + "</br></br>");
+
+// Determine average number of burglaries per precinct.
+
+var precincts = [];
+var burgByPrecinct = [0, 0, 0, 0, 0];
+var precinct_names = ["East", "West", "Southeast", "North", "Southwest"];
+
+if (precincts.indexOf(crime_stats[row].precinct) == -1) {
+            precincts.push(crime_stats[row].precinct);
+        }
+
+document.write("<b><u>Avg Burglaries/Precinct</b></u> = " + totalBurg/precincts.length + "</br></br>");
+
+// Determine how many burglaries occurred in each of the precincts.
+
+            switch (crime_stats[row].precinct) {
+                case 'E':
+                    burgByPrecinct[0] += crime_stats[row].count;
+                break;
+                case 'W':
+                    burgByPrecinct[1] += crime_stats[row].count;
+                break;
+                case 'SE':
+                    burgByPrecinct[2] += crime_stats[row].count;
+                break;
+                case 'N':
+                    burgByPrecinct[3] += crime_stats[row].count;
+                break;
+                case 'SW':
+                    burgByPrecinct[4] += crime_stats[row].count;
+                break;
+            }
+                
+document.write("Precincts = " + precincts + "</br></br>")
+
+
+
+//determine which month had the least assaults
+
+var assaults_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+        if (crime_stats[r].crime == "Assault") {
+            var monthNum = crime_stats[r].month;
+            assaults_by_month[monthNum - 1] += crime_stats[r].count;
+        } 
+ }
+
+
+//You can loop through an object’s properties:
+//for (var prop in crime_report) {
+// console.log(prop); // outputs the key name e.g. “month”
+// console.log(crime_report[prop]); // outputs the value for a given key e.g. “Robbery”
+//}
+
+
+
+
+        
+
+
+</script>
+</body>
+</html>
