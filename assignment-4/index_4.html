@@ -6,79 +6,148 @@
 <body>
 <script>
 
-//determine the total number of records in the database (just because)
+// to help determine total burglaries
+var totalBurg = 0; 
+// ----------------------------------
 
-document.write("number of reports in crime_stats = " + crime_stats.length + "</br></br>");  //counts total reports, confirms I'm speaking to crime_stats
+// to help determine burglaries/precinct
+var precincts = []; 
+// ----------------------------------
 
-//Determine the total number of burglaries
+// to help determine precinct with most burglaries
+var burgByPrecinct = [0, 0, 0, 0, 0];
+var precinct_names = ["East", "West", "Southeast", "North", "Southwest"];
+// ----------------------------------
 
-var totalBurg = 0;
+// to help determine the month with the fewest assaults
+var month_names = ["Jan", "Feb", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+var assaults_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+// ----------------------------------
+
 
   for (var row in crime_stats) {
       
+// Determine the total number of burglaries.
+
        if (crime_stats[row].crime == "Burglary") {
             totalBurg += crime_stats[row].count;
         }
-        
-document.write("<b><u>Total Burglaries</b></u> = " + totalBurg + "</br></br>");
+
+        // OUTPUT A //
+// ------------------------------------------------------------------------
 
 // Determine average number of burglaries per precinct.
 
-var precincts = [];
-var burgByPrecinct = [0, 0, 0, 0, 0];
-var precinct_names = ["East", "West", "Southeast", "North", "Southwest"];
+// First, opulate the precincts array with the individual precincts found in the report.
 
-if (precincts.indexOf(crime_stats[row].precinct) == -1) {
+        if (precincts.indexOf(crime_stats[row].precinct) == -1) {
             precincts.push(crime_stats[row].precinct);
         }
+        
+        // OUTPUT B //
+// ------------------------------------------------------------------------
 
+// Determine which precinct had the most burglaries.
+
+// First, determine how many burglaries occurred in each of the precincts.
+
+        switch (crime_stats[row].precinct) {
+            case 'E':
+                burgByPrecinct[0] += crime_stats[row].count;
+            break;
+            case 'W':
+                burgByPrecinct[1] += crime_stats[row].count;
+            break;
+            case 'SE':
+                burgByPrecinct[2] += crime_stats[row].count;
+            break;
+            case 'N':
+                burgByPrecinct[3] += crime_stats[row].count;
+            break;
+            case 'SW':
+                burgByPrecinct[4] += crime_stats[row].count;
+            break;
+        }
+            
+// Populate the assaults_by_month array - to help determine the month with the least assaults (see below)
+    
+    if (crime_stats[row].crime == "Assault") {
+            var monthNum = crime_stats[row].month;
+            assaults_by_month[monthNum - 1] += crime_stats[row].count;
+        }
+            
+            
+  } // end of for loop           
+
+// Now find the precinct with the most burglaries.
+
+var sumBurg = 0;
+var maxMonth = 0;
+
+    for (var i = 0; i < burgByPrecinct.length; i++) {
+ 
+        sumBurg += burgByPrecinct[i];
+        
+        if (burgByPrecinct[i] > maxMonth) {
+         maxMonth = burgByPrecinct[i];
+        }
+        
+    }  // end of for loop
+
+        // OUTPUT C //
+// ------------------------------------------------------------------------
+
+// Finally, determine which month had the least assaults.
+
+// First, populate assaults_by_month array.
+
+        if (crime_stats[row].crime == "Assault") {
+            var monthNum = crime_stats[row].month;
+            assaults_by_month[monthNum - 1] += crime_stats[row].count;
+        } 
+        
+// Next, determine which month had the least assaults.
+        
+var sum = 0;
+var minMonth = 1000;
+
+        for (var i = 0; i < assaults_by_month.length; i++) {
+     
+            sum += assaults_by_month[i];
+            
+           if (assaults_by_month[i] < minMonth) {
+              minMonth = assaults_by_month[i];
+            }
+        } // end of for loop
+     
+        // OUTPUT D //
+// ------------------------------------------------------------------------
+ 
+// OUTPUT**OUTPUT**OUTPUT**OUTPUT**OUTPUT**OUTPUT**OUTPUT**OUTPUT**
+document.write("<h2>Assignment 4 - Objects And Iteration</h2>")
+
+// OUTPUT A - TOTAL BURGLARIES
+document.write("<b><u>Total Burglaries</b></u> = " + totalBurg + "</br></br>");
+
+// OUTPUT B - AVERAGE NUMBER OF BURGLARIES PER PRECINCT
 document.write("<b><u>Avg Burglaries/Precinct</b></u> = " + totalBurg/precincts.length + "</br></br>");
 
-// Determine how many burglaries occurred in each of the precincts.
+// OUTPUT C - PRECINCT WITH THE MOST BURGLARIES
+document.write("<b><u>Precinct With Most Burglaries</u></b> = " + precinct_names[burgByPrecinct.indexOf(maxMonth)] + "</br></br>");
 
-            switch (crime_stats[row].precinct) {
-                case 'E':
-                    burgByPrecinct[0] += crime_stats[row].count;
-                break;
-                case 'W':
-                    burgByPrecinct[1] += crime_stats[row].count;
-                break;
-                case 'SE':
-                    burgByPrecinct[2] += crime_stats[row].count;
-                break;
-                case 'N':
-                    burgByPrecinct[3] += crime_stats[row].count;
-                break;
-                case 'SW':
-                    burgByPrecinct[4] += crime_stats[row].count;
-                break;
-            }
-                
-document.write("Precincts = " + precincts + "</br></br>")
+// OUTPUT D - MONTH WITH FEWEST ASSAULTS
+document.write("<b><u>Month With Fewest Assaults</u></b> = " + month_names[assaults_by_month.indexOf(minMonth)] + "</br></br>");
 
 
+document.write("-------------------------------</br>")
+document.write("<b>scratch paper ...</b></br></br>")
+document.write("<font size=2>number of reports in crime_stats = " + crime_stats.length + "</font></br></br>");  //counts total reports, confirms I'm speaking to crime_stats
+document.write("<font size=2>precincts = " + precincts + "</font></br></br>")
+//document.write("<font size=2>contents of burgByPrecinct array = " + burgByPrecinct + "</font></br></br>")
+document.write("<font size=2>burglaries in each precinct = " + burgByPrecinct + "</font></br></br>");
+document.write("<font size=2>assaults by month = " + assaults_by_month + "</font></br>");
 
-//determine which month had the least assaults
-
-var assaults_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-        if (crime_stats[r].crime == "Assault") {
-            var monthNum = crime_stats[r].month;
-            assaults_by_month[monthNum - 1] += crime_stats[r].count;
-        } 
- }
-
-
-//You can loop through an object’s properties:
-//for (var prop in crime_report) {
-// console.log(prop); // outputs the key name e.g. “month”
-// console.log(crime_report[prop]); // outputs the value for a given key e.g. “Robbery”
-//}
-
-
-
-
-        
+// </output>
 
 
 </script>
