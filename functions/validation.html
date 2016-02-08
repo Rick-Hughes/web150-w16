@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Events & validation</h1>
+
+<form id="form1" action="#" onsubmit="return validateForm(this);">
+  first name: <input type="text" name="firstname"><br>
+  password: <input type="text" name="password"><br>
+
+  <button >Check</button>
+</form>
+
+<hr><div id="message"></div>
+
+<script>
+function validateForm(myForm) {
+  var message = document.getElementById("message");
+  
+  message.innerHTML = myForm.firstname.value;
+  
+  if (myForm.password.value.length >= 8) {
+    
+      message.innerHTML = "Way to go!";
+      
+  } 
+  else
+  {
+    message.innerHTML = "Minimum password length is 8 characters";
+  }
+  
+  return false; // prevent page reload
+}
+</script>
+
+</body>
+</html>

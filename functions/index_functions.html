@@ -6,24 +6,100 @@
 <body>
 <script>
 
+// Define and invoke a function that takes no parameters.
 
 function myFirstFunction() {
-    document.write("I'm not sure I get this yet. = </br></br>")
+    document.write("I think I can, I think I can.</br></br>")
 }
 
 myFirstFunction();
+// ---------------------------------------------------------------
+
+// Define and invoke a function that takes at least one numeric parameter and returns a calculated value, using a local variable defined within the function
 
 function toCelsius(f) {
     return (5/9) * (f-32);
 }
 
-document.write(toCelsius(99) + "</br></br>");
+document.write(toCelsius(72) + "</br></br>");
+// ---------------------------------------------------------------
+
+// Define and invoke a function that sorts an array of numbers in descending order.
 
 var arrayOfNumbers = [13,56,17,127,4,323,59];
 
-document.write("numbers sorted ascending " + arrayOfNumbers.sort());
+document.write("numbers sorted ascending (kinda sort of) = " + arrayOfNumbers.sort() + "</br></br>");
+
+var sorted_numbers = arrayOfNumbers.sort(sortValuesDescending);
+document.write("<li>numbers sorted numerically in descending order = " + sorted_numbers + "</br></br>"); // Output: 1,8,9,4,10,12
+
+// Sorts array elements in ascending order numerically.
+function sortValuesDescending(first, second)
+{
+    if (first == second)
+        return 0;
+    if (first > second)
+        return -1;
+    else
+        return 1; 
+}
+// ---------------------------------------------------------------
+
+// Define and invoke a function that validates a password for length.
+
+    function isValidPassword(password) {
+
+        var minlength = 7;
+    
+        // return ‘True’ or ‘False’
+    
+        return (password.length >= minlength);
+    }
+
+var userPassword = prompt("Enter password");
+
+    if (isValidPassword(userPassword)) {
+    
+    document.write("Ok - your password passed muster.</br></br>");
+        
+    } else {
+
+    document.write("Please enter a password that is 7 characters or longer.</br></br>");
+    }
+// ----------------------------------------------------------------
+
+// Define and invoke a function that validates a US 5-digit zip-code.
+
+function isValidZipCode(zipCode) {
+
+        var length = 5;
+    
+        // return ‘True’ or ‘False’
+    
+        return (zipCode.length === length);
+    }
+
+var userZipCode = prompt("Enter Zip Code");
+
+    if (isNaN(isValidZipCode(userZipCode))) {
+    
+    document.write("Bonk! A Zip Code is a number! Enter a number! </br></br>");
+        
+    } else {
+
+    document.write("Ok - looks like you entered a legit Zip Code.</br></br>");
+    }
+
+// ----------------------------------------------------------------
+
+// Define and invoke a function that generates complex HTML formatting for an array of data items.
 
 
+
+
+
+
+// ----------------------------------------------------------------
 
 
 </script>
