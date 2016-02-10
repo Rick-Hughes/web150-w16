@@ -1,0 +1,75 @@
+<!DOCTYPE html> 
+<html> 
+<body> 
+
+ 
+<h1>Events & validation</h1> 
+
+ 
+<form id="form1" action="#" onsubmit="return validateForm(this);"> 
+  Enter first name: <input type="text" name="firstname"><br> 
+  Enter last name: <input type="text" name="lastname"><br> 
+  Enter password: <input type="text" name="password"><br> 
+ 
+<button >Check</button> 
+ 
+</form> 
+ 
+<hr>
+
+<div id="message"></div> 
+ 
+<script> 
+  
+function validateForm(myForm) { 
+    
+    var message = document.getElementById("message"); 
+  
+    var firstname = myForm.firstname.value; // get text value of firstname field 
+    var lastname = myForm.lastname.value; // get text value of lastname field 
+    var password = myForm.password.value; // get text value of password field
+   
+      //function checkForEntry() {
+          
+        if (firstname == null || firstname == "") {
+            message.innerHTML = "First Name field cannot be left blank." ; }
+            
+        else if (lastname == null || lastname == "") {
+            message.innerHTML = "Last Name field cannot be left blank." ; }
+            
+        else if (!checkPassword(password)) {
+            message.innerHTML = " Your password must have at least one upper case letter, one lower case letter, and be at least 8 characters in length.";
+        }
+            
+        else {
+             message.innerHTML = "You may proceed, citizen!" 
+        }
+        
+        return false; // prevent page reload 
+        }
+  
+    function checkPassword(password) {
+        
+        if (password.toUpperCase() == password) {//checking password for lower case characters.
+            return false;
+        }
+        
+        else if (password.toLowerCase() == password) {//checking password for upper case characters.
+            return false;
+        }
+        
+        else  if (password.length <8)  {
+            return false;
+        }
+        
+        else {
+            return true;
+        }
+        
+    }
+  
+</script> 
+ 
+ 
+ </body> 
+ </html>  
