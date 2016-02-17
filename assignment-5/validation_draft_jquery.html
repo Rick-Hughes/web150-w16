@@ -19,7 +19,7 @@
  
 <button >Check</button> 
 
-$("[id=message]")
+
  
 </form> 
  
@@ -31,7 +31,7 @@ $("[id=message]")
   
 function validateForm(myForm) { 
     
-    var message = document.getElementById("message"); 
+    /*var message = document.getElementById  */   $("#message")  /*("message"); */
   
     var firstname = myForm.firstname.value; // get text value of firstname field 
     var lastname = myForm.lastname.value; // get text value of lastname field 
@@ -40,17 +40,17 @@ function validateForm(myForm) {
       //function checkForEntry() {
           
         if (firstname == null || firstname == "") {
-            message.innerHTML = "First Name field cannot be left blank." ; }
+            $("#message").html("First Name field cannot be left blank.") ; }
             
         else if (lastname == null || lastname == "") {
-            message.innerHTML = "Last Name field cannot be left blank." ; }
+            $("#message").html("Last Name field cannot be left blank." ); }
             
         else if (!checkPassword(password)) {
-            message.innerHTML = " Your password must have at least one upper case letter, one lower case letter, and be at least 8 characters in length.";
+            $("#message").html("Your password must have at least one upper case letter, one lower case letter, and be at least 8 characters in length.");
         }
             
         else {
-             message.innerHTML = "You may proceed, citizen!" 
+             $("#message").html("You may proceed, citizen!");
         }
         
         return false; // prevent page reload 
