@@ -1,0 +1,74 @@
+<html>
+    
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+
+<body>
+    
+<canvas id='playCanvas' width='400' height='400' style="border:1px solid black;">
+
+
+<script>
+
+var canvas = document.getElementById("playCanvas");
+var context = canvas.getContext("2d");
+
+var id = setInterval(rotate,200);
+
+var xPosition = 10;
+var yPosition = 10;
+
+function rotate()  {
+context.clearRect(0,0,600,600);
+context.beginPath();
+context.rect(xPosition,yPosition,150,100);
+context.fillStyle = "red";
+context.fill(); 
+xPosition+=1;
+yPosition+=1;
+context.rotate(.1*Math.PI/180);
+}
+
+
+
+
+
+
+
+
+
+/*
+// Rotate canvas
+//context.rotate(20*Math.PI/180);
+
+
+// Draw a rectangle
+context.rect(100,150,150,100);
+//context.stroke();
+context.fillStyle = "red";
+context.fill();
+
+
+context.rotate(20*Math.PI/180);
+context.fillStyle = "green";
+context.fillRect(250,20,100,50);
+
+context.rotate(40*Math.PI/180);
+context.fillStyle = "blue";
+context.fillRect(250,20,100,50);
+
+context.clearRect(250,20,100,50);
+context.rotate(20*Math.PI/180);
+context.fillStyle = "green";
+context.fillRect(250,20,100,50);
+
+*/
+
+</script>  
+</canvas>
+
+</body>
+</html>
+
+

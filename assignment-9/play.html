@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    </head>
+    <style></style>
+    
+<body>
+    
+<canvas id='playCanvas' width='400' height='400' style="border:1px solid black;">
+    
+<script>
+
+var canvas = document.getElementById("playCanvas");
+var context = canvas.getContext("2d");
+
+context.rotate(20*Math.PI/180);
+
+// Creat a gradient
+var gradient=context.createLinearGradient(400,400,50,50);
+gradient.addColorStop(0,"white");
+gradient.addColorStop(1,"green");
+
+// Fill in color gradient 
+context.fillStyle=gradient;
+context.fillRect(10,10,350,400);
+
+// Draw a line
+context.moveTo(0,0);
+context.lineTo(175,175);
+context.stroke();
+    
+// Draw a circle
+context.beginPath();
+context.arc(245,250,40,0,2*Math.PI);
+context.stroke();
+
+context.beginPath();
+context.moveTo(20,20);
+context.quadraticCurveTo(20,100,200,20);
+context.stroke();
+
+//context.rotate(20*Math.PI/180);
+
+    
+</script>  
+</canvas>
+
+        
+        
+    
+    
+    
+    
+    
+    
+    
+    
+</body>
+</html>

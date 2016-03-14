@@ -1,0 +1,76 @@
+<html>
+    
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+    
+<body>
+    
+<canvas id='playCanvas' width='400' height='400' style="border:1px solid black;">
+    
+<div id="snowflake"></div>
+    
+<script>
+
+var canvas = document.getElementById("playCanvas");
+var context = canvas.getContext("2d");
+
+// Rotate canvas
+//context.rotate(*Math.PI/180);
+
+// Create a gradient
+var gradient=context.createLinearGradient(400,400,50,150);
+gradient.addColorStop(0,"white");
+gradient.addColorStop(0.5,"green");
+gradient.addColorStop(1,"yellow");
+
+// Fill canvas with color gradient 
+context.fillStyle=gradient;
+context.fillRect(10,10,400,400);
+
+// Draw a line
+context.moveTo(10,10);
+context.lineTo(400,400);
+context.stroke();
+
+// Create another gradient
+var gradientB=context.createLinearGradient(0,0,170,0);
+ gradientB.addColorStop("0.5","magenta");
+ gradientB.addColorStop("0.85","blue");
+ gradientB.addColorStop("1.0","red");
+ 
+ 
+
+// Draw a circle
+context.beginPath();
+context.arc(145,200,100,0,2*Math.PI);
+context.stroke();
+context.fillStyle=gradientB;          
+context.fill();
+
+// Draw an arc
+context.beginPath();
+context.moveTo(200,200);
+context.quadraticCurveTo(20,100,200,20);
+//context.arc.strokeStyle=gradientB;
+context.stroke();
+
+// Draw text
+context.font="30px Verdana";
+context.strokeStyle="#FF0000";
+context.strokeText("  Does this really work?", 20, 50);
+
+// Draw a rectangle
+context.beginPath();
+context.rect(225,275,150,100);
+context.stroke();
+//context.strokeStyle("blue");
+//context.fillStyle("blue");
+//context.fill();
+
+</script>  
+</canvas>
+
+</body>
+</html>
+
